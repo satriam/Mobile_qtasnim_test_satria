@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 class ModelTransaction {
   final int idTransaksi;
   final int idBarang;
