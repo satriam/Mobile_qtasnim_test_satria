@@ -3,8 +3,7 @@ import 'package:http/http.dart' as http;
 import 'package:test_flutter/Model/modelBarang.dart';
 
 class BarangService {
-  final String baseUrl =
-      'http://localhost/api_test/api.php'; // Replace with your API URL
+  final String baseUrl = 'http://localhost/api_test/api.php';
 
   Future<List<Modelbarang>> getBarangList({
     String sortBy = 'NamaBarang',
@@ -13,7 +12,7 @@ class BarangService {
   }) async {
     final response = await http.get(Uri.parse(
         '$baseUrl/barang?sort_by=$sortBy&sort_dir=$sortDir&search=$searchQuery'));
-    // print(response.body);
+
     if (response.statusCode == 200) {
       if (response.body.isNotEmpty) {
         try {
@@ -37,12 +36,10 @@ class BarangService {
       try {
         final List<dynamic> data = json.decode(response.body);
 
-        // Asumsikan data adalah list dan kita mengambil item pertama
         if (data.isNotEmpty) {
           final item = data[0];
           if (item is Map<String, dynamic> && item.containsKey('StockAwal')) {
-            return int.parse(item['StockAwal']
-                .toString()); // Mengonversi StockAwal menjadi int
+            return int.parse(item['StockAwal'].toString());
           } else {
             throw Exception('StockAwal not found in the data');
           }

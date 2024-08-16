@@ -15,7 +15,7 @@ class Modelbarang {
     return Modelbarang(
       idBarang: json['IdBarang'] is int
           ? json['IdBarang']
-          : int.parse(json['IdBarang']), // Convert to int if it's a String
+          : int.parse(json['IdBarang']),
       namaBarang: json['NamaBarang'],
       jenisBarang: json['JenisBarang'],
       StockAwal: json['StockAwal'],

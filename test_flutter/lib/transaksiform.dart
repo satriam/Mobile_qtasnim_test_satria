@@ -5,7 +5,7 @@ import 'package:test_flutter/Service/serviceBarang.dart';
 import 'package:test_flutter/Service/serviceTransaksi.dart';
 
 class TransactionFormScreen extends StatefulWidget {
-  final ModelTransaction? transaction; // Null when creating a new entry
+  final ModelTransaction? transaction;
   final bool isEditing;
 
   TransactionFormScreen({this.transaction}) : isEditing = transaction != null;
@@ -27,7 +27,6 @@ class _TransactionFormScreenState extends State<TransactionFormScreen> {
   void initState() {
     super.initState();
 
-    // Initialize controllers
     _stockController =
         TextEditingController(text: widget.transaction?.stock.toString() ?? '');
     _jumlahTerjualController = TextEditingController(
@@ -35,7 +34,6 @@ class _TransactionFormScreenState extends State<TransactionFormScreen> {
     _tanggalTransaksiController =
         TextEditingController(text: widget.transaction?.tanggalTransaksi ?? '');
 
-    // Fetch the barang list
     _fetchBarangList();
   }
 
@@ -49,7 +47,6 @@ class _TransactionFormScreenState extends State<TransactionFormScreen> {
 
   Future<int> _fetchStockForBarang(int idBarang) async {
     try {
-      // print(idBarang);
       final stock = await BarangService().getStockForBarang(idBarang);
       print(stock);
       return stock;
@@ -63,12 +60,10 @@ class _TransactionFormScreenState extends State<TransactionFormScreen> {
 
   Future<void> _fetchBarangList() async {
     try {
-      final barangList =
-          await BarangService().getBarangList(); // Fetch the list from service
+      final barangList = await BarangService().getBarangList();
       setState(() {
         _barangList = barangList;
         if (barangList.isNotEmpty) {
-          // Set the selected barang id if editing
           _selectedBarangId =
               widget.transaction?.idBarang ?? barangList.first.idBarang;
         }
@@ -110,8 +105,7 @@ class _TransactionFormScreenState extends State<TransactionFormScreen> {
               SnackBar(content: Text('Transaction created successfully')));
         }
 
-        Navigator.pop(context,
-            newTransaction); // Return to the previous screen with a success flag
+        Navigator.pop(context, newTransaction);
       } catch (e) {
         ScaffoldMessenger.of(context)
             .showSnackBar(SnackBar(content: Text('Error: ${e.toString()}')));

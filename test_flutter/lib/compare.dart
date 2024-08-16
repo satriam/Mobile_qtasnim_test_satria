@@ -41,7 +41,7 @@ class _CompareItemsPageState extends State<CompareItemsPage> {
           ),
         );
         setState(() {
-          _items = []; // Clear the items
+          _items = [];
         });
       } else {
         setState(() {

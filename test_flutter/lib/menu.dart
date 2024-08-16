@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:test_flutter/barang.dart';
 import 'package:test_flutter/transaksi.dart';
-import 'package:test_flutter/transaksiform.dart';
-import 'compare.dart'; // Import the CompareItemsPage
+import 'compare.dart';
 
 class MenuGridPage extends StatelessWidget {
   final List<Map<String, dynamic>> menuItems = [
@@ -11,16 +10,15 @@ class MenuGridPage extends StatelessWidget {
       'icon': Icons.compare_arrows,
       'page': CompareItemsPage(),
     },
-    // Add more items to the grid as needed
     {
       'title': 'Barang',
       'icon': Icons.shop_2,
-      'page': BarangListScreen(), // Replace with the actual page
+      'page': BarangListScreen(),
     },
     {
       'title': 'Transaksi',
       'icon': Icons.shop,
-      'page': TransactionListScreen(), // Replace with the actual page
+      'page': TransactionListScreen(),
     },
   ];
 

@@ -156,12 +156,12 @@ class _TransactionListScreenState extends State<TransactionListScreen> {
     );
 
     if (result != null && result is ModelTransaction) {
-      _fetchBarangList(); // Refresh the list after adding or editing an item
+      _fetchBarangList();
     }
   }
 
   void _deleteTransaction(int idTransaction) async {
     await _TransactionService.deleteTransaction(idTransaction);
-    _fetchBarangList(); // Refresh the list after deletion
+    _fetchBarangList();
   }
 }
